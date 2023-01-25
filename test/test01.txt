@@ -1,0 +1,8 @@
+{- test01.txt block comment -}
+
+(\x.x) ((\x.x) (\z. (\x.x) z)); -- line comment
+--(\x. (\z.(\x.x)(\x.x)))(\y.((\x.x x)(\x.x x))); -- (\x.(\z.Id Id))(\y.Ω)
+y/;
+z/;
+(\x.((x y)(y x)))((\w.(w w))z); 
+(\m.\n.\f.\x.m f (n f x)) (\f.\x.f (f x)) (\f.\x.f (f x));

@@ -1,0 +1,58 @@
+{--------------- test02.txt list examples --------------}
+
+{-------- "Collected Lambda Calculus Functions" --------}
+{--- from https://jwodder.freeshell.org/lambda.html  ---}
+
+{---------- Booleans ----------}
+True := \t. \f. t; 
+False := \t. \f. f;
+And :=\p.\q. p q False;
+Or :=\p.\q. p True q;
+Not := \p. p False True;
+
+{---------- Pairs -----------}
+Pair := \f.\s.\b. b f s;
+Fst := \p. p (\t. \f. t);
+Snd := \p. p (\t. \f. f);
+
+{---------- Mathematical Operators -----------}
+Succ := \n. \s. \z. s (n s z); 
+Succ2 := \n. \s. \z. (n s (s z));  -- another Succ
+IsZro := \m. m (\x. False) True;
+Plus := \m. \n. \f. \x. m f (n f x);
+
+{---------- Natural Numbers -----------}
+c0 := \s. \z. z; -- zero
+c1 := Succ c0; 
+c2 := Succ c1; 
+c3 := Succ c2;
+c4 := Succ c3;
+c5 = Succ2 c4;
+
+{---------- List ----------}
+Cons := Pair;
+Nil := \x. True;
+Head := Fst;
+Tail := Snd;
+IsNil := \p. p (\x. \y. False);
+
+{---------- List Functions ----------}
+Len := \self. \xs. (IsNil xs) c0 (Plus (self (Tail xs)) c1);
+Sum := \self. \xs. (IsNil xs) c0 (Plus (Head xs) (self (Tail xs)));
+Nth:= \x.\i. Fst (i Snd x);
+Append := \g.\a.\b. IsNil a b (Pair (Fst a) (g (Snd a) b));
+
+{---------- Fixed point combinators ----------}
+YCombi := \f. (\x. f (x x)) (\x. f (x x));
+ZCombi := \f. (\x. f (\y. x x y)) (\x. f (\y. x x y));
+TuringCombi := (\x.\y.y(x x y))(\x.\y.y(x x y));
+
+
+-- list examples
+ls2 := Cons c1(Cons c0 Nil);
+ls3 := Cons c4(Cons c3(Cons c2 Nil));
+appendLs2Ls3 := YCombi Append ls2 ls3;
+nthAppendLs2Ls3c4 = Nth appendLs2Ls3 c4;
+lenAppendLs2Ls3 = ZCombi Len appendLs2Ls3;
+sumAppendLs2Ls3 = TuringCombi Sum appendLs2Ls3;
+
