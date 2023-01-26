@@ -29,7 +29,7 @@ z/;
 (\m.\n.\f.\x.m f (n f x)) (\f.\x.f (f x)) (\f.\x.f (f x));
 ```
 
-`\x. expr := lambda abstraction`
+`lambda abstraction := \x. expr`
 
 <table>
   <caption>result</caption>
