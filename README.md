@@ -151,7 +151,7 @@ appendLs2Ls3 := (((YCombi Append) ls2) ls3);
 nthAppendLs2Ls3c4 = (\s.(\z.(s (s z))));
 lenAppendLs2Ls3 = (\f.(\x.(f (f (f (f (f x)))))));
 sumAppendLs2Ls3 = (\f.(\x.(f (f (f (f (f (f (f (f (f (f x))))))))))));
-[Finished in 14.4s]
+[Finished in 6.2s]
 
 ``` 
 
